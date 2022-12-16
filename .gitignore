@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+/.vs
+/LeagueMovementPractice/.vs/LeagueMovementPractice/v17
+*.sln
+/LeagueMovementPractice/LeagueMovementPractice.vcxproj
+/LeagueMovementPractice/LeagueMovementPractice.vcxproj.filters
+/LeagueMovementPractice/LeagueMovementPractice.vcxproj.user
