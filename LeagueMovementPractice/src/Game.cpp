@@ -1,12 +1,15 @@
 # include "Game.h"
 # include "STDIO.h"
+# include <iostream>
 
 Game::Game() {
-	window = nullptr;
+	_window = nullptr;
+	_gameState = GameState::START;
 }
 
 Game::~Game() {
-
+	printf("Shutting Down.");
+	SDL_Quit();
 }
 
 // Inits SDL and creates window
@@ -19,28 +22,33 @@ void Game::run() {
 	SDL_GetCurrentDisplayMode(0, &DM);
 	auto width = DM.w;
 	auto height = DM.h;
-	window = SDL_CreateWindow("LeageMovementPractice",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height-50, SDL_WINDOW_OPENGL);
-	if (window == nullptr) printf(SDL_GetError()); // if window fails to create
+	_window = SDL_CreateWindow("LeageMovementPractice",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height-50, SDL_WINDOW_OPENGL);
+	if (_window == nullptr) printf(SDL_GetError()); // if window fails to create
 	
 	//Upon successful window creation listen for events
 	SDL_Event event{};
 	listen(event);
 	
 	// Upon application close
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	SDL_DestroyWindow(_window);
+	Game::~Game();
 }
 
-// listens and handles events
+// listens and handles events / runs game loop
 void Game::listen(SDL_Event event) {
-	while (true) {
+	while (_gameState != GameState::EXIT) {
 
 		if (SDL_PollEvent(&event)) { // if theres a pending event
-			// needs to be in if statement so app can close
-			if (event.type == SDL_QUIT) break;
 
 			switch (event.type) {
-				// add events to be caught here
+
+				case SDL_QUIT : _gameState = GameState::EXIT;
+					break;
+
+				case SDL_MOUSEMOTION:
+					std::cout << event.motion.x << " " << event.motion.y << std::endl;
+					break;
+
 			}
 
 		}
