@@ -34,8 +34,17 @@ void Game::run() {
 // listens and handles events
 void Game::listen(SDL_Event event) {
 	while (true) {
-		if (SDL_PollEvent(&event)) {
+
+		if (SDL_PollEvent(&event)) { // if theres a pending event
+			// needs to be in if statement so app can close
 			if (event.type == SDL_QUIT) break;
+
+			switch (event.type) {
+				// add events to be caught here
+			}
+
 		}
+
 	}
+
 }
