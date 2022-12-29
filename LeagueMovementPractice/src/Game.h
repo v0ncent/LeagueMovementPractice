@@ -1,6 +1,12 @@
 # pragma once
+
+// define for legacy systems
+#ifndef GAME
+#define GAME
+
 # include <SDL/SDL.h>
 # include <GLEW/glew.h>
+
 // game state enum
 enum class GameState{START,EXIT};
 
@@ -15,3 +21,5 @@ private:
 	void listen(SDL_Event event);
 	GameState _gameState;
 };
+
+#endif

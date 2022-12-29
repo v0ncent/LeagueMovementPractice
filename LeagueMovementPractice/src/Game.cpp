@@ -23,7 +23,13 @@ void Game::run() {
 	auto width = DM.w;
 	auto height = DM.h;
 	_window = SDL_CreateWindow("LeageMovementPractice",SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height-50, SDL_WINDOW_OPENGL);
-	if (_window == nullptr) printf(SDL_GetError()); // if window fails to create
+	if (_window == nullptr) { // if window fails to create
+		printf(SDL_GetError()); 
+		Game::~Game();
+	}
+
+	//OPENGL Context
+
 	
 	//Upon successful window creation listen for events
 	SDL_Event event{};
