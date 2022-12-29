@@ -18,8 +18,10 @@ public:
 	void run();
 private:
 	SDL_Window* _window;
-	void listen(SDL_Event event);
 	GameState _gameState;
+
+	void listen(SDL_Event event);
+	void draw();
 };
 
 #endif
