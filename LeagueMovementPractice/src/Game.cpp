@@ -2,6 +2,7 @@
 # include "STDIO.h"
 # include <iostream>
 
+
 Game::Game() {
 	_window = nullptr;
 	_gameState = GameState::START;
@@ -85,11 +86,16 @@ void Game::listen(SDL_Event event) {
 
 			switch (event.type) {
 
-				case SDL_QUIT : _gameState = GameState::EXIT;
+				case SDL_QUIT : 
+					_gameState = GameState::EXIT;
 					break;
 
 				case SDL_MOUSEMOTION:
-					std::cout << event.motion.x << " " << event.motion.y << std::endl;
+					EventManager::mouseMove(event.motion);
+					break;
+
+				case SDL_MOUSEBUTTONDOWN:
+					EventManager::mousePress(event.button);
 					break;
 
 			}
